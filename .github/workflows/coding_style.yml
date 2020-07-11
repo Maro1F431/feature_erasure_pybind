@@ -1,0 +1,31 @@
+name: Coding Style CI
+
+on: [push]
+
+jobs:
+  coding-style:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        fetch-depth: 0 # Fetch all history
+
+    - name: 80Cols
+      run: "! grep -nwE '.{80}.+' $(find src -name '*.cc' -o -name '*.hh')"
+
+    - name: Whitespaces
+      run: "! grep -nE '( |\t)$' $(find src -name '*.cc' -o -name '*.hh')"
+
+    - name: Binary files
+      run: "! find * -type f !path 'tests/categories/config/fuzzy_configs/*' ! -size 0 -exec grep -IL . '{}' \\; | grep -E '.*'"
+
+    - name: opening parentheses spaces
+      run: "! grep -n '( ' $(find src -name '*.cc' -o -name '*.hh')"
+
+    - name: opening parentheses eol
+      run: "! grep -n '($' $(find src -name '*.cc' -o -name '*.hh')"
+
+    - name: closing parentheses
+      run: "! grep -n ' )' $(find src -name '*.cc' -o -name '*.hh')"
