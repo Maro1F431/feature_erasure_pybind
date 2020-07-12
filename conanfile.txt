@@ -1,0 +1,7 @@
+[generators]
+cmake_find_package
+[requires]
+pybind11/2.5.0
+pylene/head@lrde/stable
+[options]
+pylene:fPIC=True
