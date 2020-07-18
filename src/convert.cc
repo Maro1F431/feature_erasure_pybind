@@ -16,7 +16,7 @@ mln::ndbuffer_image array_to_buffer(py::array_t<float> array)
     return mln::ndbuffer_image::from_buffer(
         (std::byte*) array.data(),
 	mln::sample_type_id::FLOAT,
-	array.ndim(), 
+	array.ndim(),
 	sizes.data()
     );
 }
