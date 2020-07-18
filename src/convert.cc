@@ -29,7 +29,6 @@ py::array_t<float> buffer_to_array(mln::ndbuffer_image buff)
 		       sizeof(buff.sample_type()), //itemsize
 		       py::format_descriptor<float>::format(),
 		       buff.pdim(), // ndim
-		       vec_size, // shape
-		       std::nullptr // strides
-            );
+		       vec_size.data() // shape
+		       ));
 }
