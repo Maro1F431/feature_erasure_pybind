@@ -4,6 +4,8 @@
 #include <vector>
 #include <iostream>
 
+#include "convert.hh"
+
 namespace py = pybind11;
 
 mln::ndbuffer_image array_to_buffer(py::array_t<float> array)
@@ -58,4 +60,17 @@ py::array_t<float> buffer_to_array(mln::ndbuffer_image buff)
             get_strides(buff) // strides
         )
     };
+}
+
+py::array_t<float> converting_twice(py::array_t<float> arr)
+{
+	mln::ndbuffer_image buff = array_to_buffer(arr);
+	py::array_t<float> result = buffer_to_array(buff);
+	return result;
+}
+
+PYBIND11_MODULE(pylene, m)
+{
+    m.doc() = "Test function for conversion functions";
+    m.def("converting_twice", &converting_twice, "Convert a same array twice");
 }
