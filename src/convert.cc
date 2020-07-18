@@ -17,9 +17,9 @@ mln::ndbuffer_image array_to_buffer(py::array_t<float> array)
     }
     return mln::ndbuffer_image::from_buffer(
         (std::byte*) array.data(),
-	mln::sample_type_id::FLOAT,
-	array.ndim(),
-	sizes.data()
+        mln::sample_type_id::FLOAT,
+        array.ndim(),
+        sizes.data()
     );
 }
 
@@ -34,9 +34,9 @@ std::vector<int> get_strides(mln::ndbuffer_image& buff)
         for (int j = i + 1; j < buff.pdim(); ++j)
         {
             res[i] *= buff.size(j);
-	}
-	for (int j = i - 1; j >= 0; --j)
-	{
+        }
+        for (int j = i - 1; j >= 0; --j)
+        {
             res[i] /= buff.size(j);
         }
     }
@@ -51,8 +51,8 @@ py::array_t<float> buffer_to_array(mln::ndbuffer_image buff)
         vec_size.push_back(buff.size(i));
     }
     return py::array{
-       	py::buffer_info(
-	    buff.buffer(),
+        py::buffer_info(
+            buff.buffer(),
             sizeof(buff.sample_type()), //itemsize
             py::format_descriptor<float>::format(),
             buff.pdim(), // ndim
@@ -64,9 +64,9 @@ py::array_t<float> buffer_to_array(mln::ndbuffer_image buff)
 
 py::array_t<float> converting_twice(py::array_t<float> arr)
 {
-	mln::ndbuffer_image buff = array_to_buffer(arr);
-	py::array_t<float> result = buffer_to_array(buff);
-	return result;
+    mln::ndbuffer_image buff = array_to_buffer(arr);
+    py::array_t<float> result = buffer_to_array(buff);
+    return result;
 }
 
 PYBIND11_MODULE(pylene, m)
