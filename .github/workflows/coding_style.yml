@@ -24,8 +24,5 @@ jobs:
     - name: opening parentheses spaces
       run: "! grep -n '( ' $(find src -name '*.cc' -o -name '*.hh')"
 
-    - name: opening parentheses eol
-      run: "! grep -n '($' $(find src -name '*.cc' -o -name '*.hh')"
-
     - name: closing parentheses
       run: "! grep -n ' )' $(find src -name '*.cc' -o -name '*.hh')"

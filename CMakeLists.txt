@@ -10,10 +10,6 @@ set(SRC_MODULE
     "src/convert.cc"
     )
 
-#put test files here
-set(SRC_TESTS
-    "tests/test.cc"
-    )
 find_package(Pylene REQUIRED)
 find_package(pybind11 REQUIRED)
 pybind11_add_module(pylene MODULE src/main.cc ${SRC_MODULE})

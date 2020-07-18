@@ -16,7 +16,7 @@ def conversion_assertion(to_convert):
 def test_empty_one_dim():
     conversion_assertion(np.array([1, 2, 3, 4, 5]))
 
-def two_dim_square():
+def test_two_dim_square():
     conversion_assertion(np.array([[1, 2], [3, 4]]))
 
 def test_two_dim():
