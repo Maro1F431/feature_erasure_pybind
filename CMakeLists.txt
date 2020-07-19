@@ -8,6 +8,7 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra -pedantic -fpermissive")
 #put source files here except main.cc
 set(SRC_MODULE
     "src/convert.cc"
+    "src/bindings.cc"
     )
 
 find_package(Pylene REQUIRED)
