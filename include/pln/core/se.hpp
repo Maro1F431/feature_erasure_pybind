@@ -1,49 +1,69 @@
 // Design pattern shown on https://www.youtube.com/watch?v=ZPk8HuyrKXU
 
+#include <mln/core/se/rect2d.hpp>
+#include <mln/core/se/disc.hpp>
+#include <mln/core/se/periodic_line2d.hpp>
+#include <mln/core/se/mask2d.hpp>
+#include <mln/core/point.hpp>
+
 namespace pln
 {
     class se_t
     {
     public:
-        template <typename T>
-        se_t(T&& value)
+        se_t(mln::se::rect2d val)
         {
-            *this = value ; // calls overloaded = operator
+            rect = val ;
+            value_type = RECT;
+        }
+        se_t(mln::se::disc val)
+        {
+            disc = val ;
+            value_type = DISC;
+        }
+        se_t(mln::se::periodic_line2d val)
+        {
+            line = val ;
+            value_type = LINE;
+        }
+        se_t(mln::se::mask2d val)
+        {
+            mask = val ;
+            value_type = MASK;
         }
 
-	template<typename T>
-        se_t& operator=(T&& value)
+        mln::se::rect2d get_rect()
         {
-            m_value.reset(new Model<T>(value));
-	    return *this;
+            return rect.value();
         }
+
+        mln::se::disc get_disc()
+        {
+            return disc.value();
+        }
+
+        mln::se::periodic_line2d get_line()
+        {
+            return line.value();
+        }
+
+        mln::se::mask2d get_mask()
+        {
+            return mask.value();
+        }
+
+        enum
+        {
+            RECT,
+            DISC,
+            LINE,
+            MASK
+        } value_type;
+
     private:
-        struct Concept // Our interface
-        {
-            virtual ~Concept() {}
-            virtual int radial_extent() const = 0; // mask2d
-            //virtual void .... () (const) = 0;
-        };
-
-        template <typename T>
-        struct Model : Concept // To proceed virtual dispatch
-        {
-            Model(T const& value) // T const& same as const T&
-                : m_val(value)
-            {}
-            
-            int radial_extent() const override
-            {
-                return m_val.radial_extent();
-            }
-
-	    /*void ... () (const) override
-            {
-                m_val....();
-            }*/
-
-	    T m_val;
-	};
-        std::unique_ptr<Concept> m_value;
+        std::optional<mln::se::rect2d> rect;
+        std::optional<mln::se::disc> disc;
+        std::optional<mln::se::periodic_line2d> line;
+        std::optional<mln::se::mask2d> mask;
     };
 }

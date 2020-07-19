@@ -25,3 +25,6 @@ def test_two_dim():
 def test_three_dim():
     conversion_assertion(np.array([[[1, 2, 3], [4, 5, 6]], [[7, 8, 9], [10, 11, 12]]]))
 
+def test_type_erasure():
+    print(pylene.test())
+

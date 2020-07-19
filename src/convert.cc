@@ -68,9 +68,3 @@ py::array_t<float> converting_twice(py::array_t<float> arr)
     py::array_t<float> result = buffer_to_array(buff);
     return result;
 }
-
-PYBIND11_MODULE(pylene, m)
-{
-    m.doc() = "Test function for conversion functions";
-    m.def("converting_twice", &converting_twice, "Convert a same array twice");
-}

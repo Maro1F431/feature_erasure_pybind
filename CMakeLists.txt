@@ -12,7 +12,5 @@ set(SRC_MODULE
 
 find_package(Pylene REQUIRED)
 find_package(pybind11 REQUIRED)
-pybind11_add_module(pylene MODULE src/main.cc ${SRC_MODULE})
+pybind11_add_module(pylene MODULE ${SRC_MODULE})
 target_link_libraries(pylene PRIVATE Pylene::Pylene)
-
-
