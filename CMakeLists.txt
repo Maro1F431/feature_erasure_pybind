@@ -17,5 +17,5 @@ pybind11_add_module(pylene MODULE ${SRC_MODULE})
 target_link_libraries(pylene PRIVATE Pylene::Pylene)
 add_test(NAME build
 	COMMAND ${CMAKE_BUILD_TOOL})
-add_test(NAME testsuit
-	COMMAND python ../tests/test_convert.py)
+add_test(NAME testsuite
+	COMMAND pytest ../tests/test_convert.py)
