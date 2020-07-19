@@ -11,3 +11,5 @@ namespace py = pybind11;
 mln::ndbuffer_image array_to_buffer(py::array_t<float> array);
 
 py::array_t<float> buffer_to_array(mln::ndbuffer_image buff);
+
+py::array_t<float> converting_twice(py::array_t<float> arr);

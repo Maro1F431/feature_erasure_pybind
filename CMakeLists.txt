@@ -8,11 +8,10 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra -pedantic -fpermissive")
 #put source files here except main.cc
 set(SRC_MODULE
     "src/convert.cc"
+    "src/bindings.cc"
     )
 
 find_package(Pylene REQUIRED)
 find_package(pybind11 REQUIRED)
-pybind11_add_module(pylene MODULE src/main.cc ${SRC_MODULE})
+pybind11_add_module(pylene MODULE ${SRC_MODULE})
 target_link_libraries(pylene PRIVATE Pylene::Pylene)
-
-
