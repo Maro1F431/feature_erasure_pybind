@@ -1,5 +1,6 @@
 PROJET CPPA
 ===========
+The objective of this project is to use pybind and c++ to use feature erasure in python.
 
 HOW TO BUILD
 ************
